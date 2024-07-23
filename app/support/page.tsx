@@ -1,10 +1,15 @@
 "use client";
 
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import anime from "animejs";
 import AnimatedText from "../components/AnimatedText";
 
 export default function Support() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sentMessage, setSentMessage] = useState(false);
+
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,19 +27,27 @@ export default function Support() {
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    // get the values from the form and convert to json
+    // then send the json to the server
+    // get
+
+    const formJson = {
+      name,
+      email,
+      message,
+      template: "EmailTemplate",
+    };
     const response = await fetch("/api/send", {
       method: "POST",
-      body: formData,
+      headers: {
+        "content-type": "application/json",
+      },
+      // add the form data to the body
+      body: JSON.stringify(formJson),
     });
 
-    // Handle response if necessary
-    const data = await response.json();
-    // ...
+    console.log(response);
   }
-  const sendEmail = () => {
-    // send email with the api function
-  };
 
   return (
     <div className='space-y-8'>
@@ -96,6 +109,7 @@ export default function Support() {
                     type='text'
                     id='name'
                     name='name'
+                    onChange={(event) => setName(event.target.value)}
                     required
                     className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
                   />
@@ -112,6 +126,7 @@ export default function Support() {
                     type='email'
                     id='email'
                     name='email'
+                    onChange={(event) => setEmail(event.target.value)}
                     required
                     className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
                   />
@@ -127,6 +142,7 @@ export default function Support() {
                   <textarea
                     id='message'
                     name='message'
+                    onChange={(event) => setMessage(event.target.value)}
                     required
                     className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-900 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out '></textarea>
                 </div>
