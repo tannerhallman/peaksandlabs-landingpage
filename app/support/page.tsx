@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import anime from "animejs";
 import AnimatedText from "../components/AnimatedText";
 
@@ -18,6 +18,23 @@ export default function Support() {
       });
     }
   }, []);
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const response = await fetch("/api/send", {
+      method: "POST",
+      body: formData,
+    });
+
+    // Handle response if necessary
+    const data = await response.json();
+    // ...
+  }
+  const sendEmail = () => {
+    // send email with the api function
+  };
 
   return (
     <div className='space-y-8'>
@@ -52,9 +69,9 @@ export default function Support() {
                 <svg
                   fill='none'
                   stroke='currentColor'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
                   className='w-6 h-6'
                   viewBox='0 0 24 24'>
                   <rect width='20' height='20' x='2' y='2' rx='5' ry='5'></rect>
@@ -67,10 +84,7 @@ export default function Support() {
             <h1 className='text-4xl text-gray-800 sm:text-4xl font-bold title-font mb-4'>
               Contact Form
             </h1>
-            <form
-              action='send-contact.php'
-              method='post'
-              id='submit-contact-form'>
+            <form onSubmit={onSubmit} method='post' id='submit-contact-form'>
               <div className='p-2 w-full'>
                 <div className='relative'>
                   <label

@@ -6,17 +6,24 @@ import { EmailTemplate } from "../../components/email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data, error } = await resend.emails.send({
-    from: "Peaks and Labs Campervan Co <peaksandlabscampervanco@gmail.com>",
-    to: ["delivered@resend.dev"],
-    subject: "Hello world",
-    react: EmailTemplate({ firstName: "John" }),
-  });
+export async function POST() {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Peaks and Labs Campervan Co <adventure@peaksandlabscampervans.com>",
+      to: ["delivered@resend.dev"],
+      reply_to: 'Peaks and Labs Campervan Co <peaksandlabscampervanco@gmail.com>',
+      subject: "Hello world",
+      react: EmailTemplate({ firstName: "John" }),
+    });
 
-  if (error) {
-    return res.status(400).json(error);
+    if (error) {
+      console.log(error);
+      return Response.json({ error }, { status: 500 });
+    }
+
+    return Response.json(data);
+  } catch (error) {
+    console.log(error);
+    return Response.json({ error }, { status: 500 });
   }
-
-  res.status(200).json(data);
-};
+}
