@@ -35,7 +35,6 @@ export default function Support() {
       name,
       email,
       message,
-      template: "EmailTemplate",
     };
     const response = await fetch("/api/send", {
       method: "POST",

@@ -7,10 +7,9 @@ import { EmailTemplate } from "../../components/email-template";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface Body {
-  name?: string | null;
-  email?: string | null;
-  message?: string | null;
-  template?: string | null;
+  name: string;
+  email: string;
+  message: string;
 }
 export async function POST(req: Request, res: NextApiResponse) {
   try {
