@@ -30,7 +30,7 @@ export default function Support() {
               Contact Us
             </h1>
             <p className='leading-relaxed text-xl text-gray-900'>
-              We're here to assist you! If you have any questions or need
+              We&apos;re here to assist you! If you have any questions or need
               assistance, please feel free to reach out to us.
               <br />
               <br />
