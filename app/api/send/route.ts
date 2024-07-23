@@ -15,20 +15,19 @@ export async function POST(req: Request, res: NextApiResponse) {
   try {
     // get the values form the req
     const body = await req.json();
-    const { name, message, email, template } = body as Body;
+    const { name, message, email } = body as Body;
 
-    if (!email || !template) {
+    if (!email || !message || !email) {
       return Response.json(
-        { error: "email and template are required fields." },
+        { error: "email, name, and message are required fields." },
         { status: 400 }
       );
     }
 
     const { data, error } = await resend.emails.send({
       from: "Peaks and Labs Campervan Co <adventure@peaksandlabscampervans.com>",
-      to: [email],
-      reply_to:
-        "Peaks and Labs Campervan Co <peaksandlabscampervanco@gmail.com>",
+      to: ["peaksandlabscampervanco@gmail.com"],
+      reply_to: email,
       subject: "Hello world",
       react: EmailTemplate({ name, email, message }),
     });
