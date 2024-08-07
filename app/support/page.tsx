@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import anime from "animejs";
+import anime, { set } from "animejs";
 import AnimatedText from "../components/AnimatedText";
 
 export default function Support() {
@@ -9,6 +9,7 @@ export default function Support() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [sentMessage, setSentMessage] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -36,16 +37,23 @@ export default function Support() {
       email,
       message,
     };
-    const response = await fetch("/api/send", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      // add the form data to the body
-      body: JSON.stringify(formJson),
-    });
-
-    console.log(response);
+    try {
+      setSubmitting(true);
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        // add the form data to the body
+        body: JSON.stringify(formJson),
+      });
+      setSentMessage(true);
+      console.log(response);
+    } catch (error) {
+      setSubmitting(false);
+      setSentMessage(false);
+      alert("There was an error sending the message. Please try again later.");
+    }
   }
 
   return (
@@ -96,64 +104,69 @@ export default function Support() {
             <h1 className='text-4xl text-gray-800 sm:text-4xl font-bold title-font mb-4'>
               Contact Form
             </h1>
-            <form onSubmit={onSubmit} method='post' id='submit-contact-form'>
-              <div className='p-2 w-full'>
-                <div className='relative'>
-                  <label
-                    htmlFor='name'
-                    className='leading-7 py-4 text-lg text-gray-900'>
-                    Your Name
-                  </label>
-                  <input
-                    type='text'
-                    id='name'
-                    name='name'
-                    onChange={(event) => setName(event.target.value)}
-                    required
-                    className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
-                  />
+            {sentMessage ? (
+              <p className='text-primary mb-8'>Message sent!</p>
+            ) : (
+              <form onSubmit={onSubmit} method='post' id='submit-contact-form'>
+                <div className='p-2 w-full'>
+                  <div className='relative'>
+                    <label
+                      htmlFor='name'
+                      className='leading-7 py-4 text-lg text-gray-900'>
+                      Your Name
+                    </label>
+                    <input
+                      type='text'
+                      id='name'
+                      name='name'
+                      onChange={(event) => setName(event.target.value)}
+                      required
+                      className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className='p-2 w-full'>
-                <div className='relative'>
-                  <label
-                    htmlFor='email'
-                    className='leading-7 py-4 text-lg text-gray-900'>
-                    Your Email
-                  </label>
-                  <input
-                    type='email'
-                    id='email'
-                    name='email'
-                    onChange={(event) => setEmail(event.target.value)}
-                    required
-                    className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
-                  />
+                <div className='p-2 w-full'>
+                  <div className='relative'>
+                    <label
+                      htmlFor='email'
+                      className='leading-7 py-4 text-lg text-gray-900'>
+                      Your Email
+                    </label>
+                    <input
+                      type='email'
+                      id='email'
+                      name='email'
+                      onChange={(event) => setEmail(event.target.value)}
+                      required
+                      className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-900 py-1 px-1 leading-8 transition-colors duration-200 ease-in-out '
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className='p-2 w-full'>
-                <div className='relative'>
-                  <label
-                    htmlFor='message'
-                    className='leading-7 py-4 text-lg text-gray-900'>
-                    Your Message
-                  </label>
-                  <textarea
-                    id='message'
-                    name='message'
-                    onChange={(event) => setMessage(event.target.value)}
-                    required
-                    className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-900 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out '></textarea>
+                <div className='p-2 w-full'>
+                  <div className='relative'>
+                    <label
+                      htmlFor='message'
+                      className='leading-7 py-4 text-lg text-gray-900'>
+                      Your Message
+                    </label>
+                    <textarea
+                      id='message'
+                      name='message'
+                      onChange={(event) => setMessage(event.target.value)}
+                      required
+                      className='w-full bg-white rounded border border-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-900 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out '></textarea>
+                  </div>
                 </div>
-              </div>
-              <div className='p-2 w-full'>
-                <button
-                  type='submit'
-                  className='bg-primary text-white px-8 py-4 rounded-lg text-xl hover:bg-opacity-90 transition-colors g-recaptcha'>
-                  Send Message
-                </button>
-              </div>
-            </form>
+                <div className='p-2 w-full'>
+                  <button
+                    disabled={submitting || sentMessage}
+                    type='submit'
+                    className='bg-primary text-white px-8 py-4 rounded-lg text-xl hover:bg-opacity-90 transition-colors g-recaptcha'>
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>

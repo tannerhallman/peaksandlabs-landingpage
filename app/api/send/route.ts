@@ -28,7 +28,7 @@ export async function POST(req: Request, res: NextApiResponse) {
       from: "Peaks and Labs Campervan Co <adventure@peaksandlabscampervans.com>",
       to: ["peaksandlabscampervanco@gmail.com"],
       reply_to: email,
-      subject: "Hello world",
+      subject: `A Message from: ${email}`,
       react: EmailTemplate({ name, email, message }),
     });
 
