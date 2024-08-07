@@ -30,9 +30,9 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className }
 
   return (
     <div ref={ref}>
-      <div ref={sectionRef} className={className}>
+      <section ref={sectionRef} className={className}>
         {children}
-      </div>
+      </section>
     </div>
   )
 }
