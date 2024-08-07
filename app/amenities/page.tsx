@@ -202,23 +202,23 @@ export default function Amenities() {
                 <h3 className='text-lg font-bold'>Sleeping Accommodations</h3>
                 <p className='text-muted-foreground'>
                   Our campervan features a comfortable memory foam bed, perfect
-                  for a good night's sleep after a day of exploring.
+                  for a good night&apos;s sleep after a day of exploring.
                 </p>
               </div>
               <div className='bg-white rounded-xl p-4 md:p-6 lg:p-8 flex flex-col gap-4'>
                 <FaKitchenSet className='h-8 w-8 text-primary' />
                 <h3 className='text-lg font-bold'>Fully Equipped Kitchen</h3>
                 <p className='text-muted-foreground'>
-                  Prepare delicious meals on the go with our campervan's fully
-                  equipped kitchen, including a gas-powered range, refrigerator
-                  & freezer, and all the necessary cookware.
+                  Prepare delicious meals on the go with our campervan&apos;s
+                  fully equipped kitchen, including a gas-powered range,
+                  refrigerator & freezer, and all the necessary cookware.
                 </p>
               </div>
               <div className='bg-white rounded-xl p-4 md:p-6 lg:p-8 flex flex-col gap-4'>
                 <FaTv className='h-8 w-8 text-primary' />
                 <h3 className='text-lg font-bold'>Entertainment System</h3>
                 <p className='text-muted-foreground'>
-                  Stay entertained during your travels with our campervan's
+                  Stay entertained during your travels with our campervan&apos;s
                   entertainment system, featuring a projector, CarPlay & Android
                   Auto, a portable speaker and more.
                 </p>
@@ -246,8 +246,8 @@ export default function Amenities() {
                 <h3 className='text-lg font-bold'>Outdoor Gear Storage</h3>
                 <p className='text-muted-foreground'>
                   Store all your outdoor gear, from hiking equipment to camping
-                  gear, in our campervan's ample storage space, making it easy
-                  to embark on your next adventure.
+                  gear, in our campervan&apos;s ample storage space, making it
+                  easy to embark on your next adventure.
                 </p>
               </div>
             </div>
@@ -275,14 +275,14 @@ function AmenitiesList() {
         Full List
       </h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16'>
-        {Object.entries(amenities).map(([category, items]) => (
-          <div>
+        {Object.entries(amenities).map(([category, items], index) => (
+          <div key={index}>
             <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-4'>
               {category.toString()}
             </h2>
             <ul className='space-y-2'>
-              {items.map((item) => (
-                <li className='flex items-center space-x-3'>
+              {items.map((item, index) => (
+                <li key={index} className='flex items-center space-x-3'>
                   {item.icon}
                   <span>{item.name}</span>
                 </li>

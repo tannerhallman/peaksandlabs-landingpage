@@ -80,7 +80,7 @@ export default function Component() {
                   </h2>
                   <p className='text-muted-foreground mb-8 md:text-lg lg:text-xl'>
                     Explore the great outdoors in our cozy and well-equipped
-                    campervan. Designed for comfort and adventure, it's the
+                    campervan. Designed for comfort and adventure, it&apos;s the
                     perfect companion for your next road trip.
                   </p>
                   <div className='grid grid-cols-2 gap-4'>
@@ -157,15 +157,16 @@ export default function Component() {
                   <h3 className='text-lg font-bold'>Sleeping Accommodations</h3>
                   <p className='text-muted-foreground'>
                     Our campervan features a comfortable memory foam bed,
-                    perfect for a good night's sleep after a day of exploring.
+                    perfect for a good night&apos;s sleep after a day of
+                    exploring.
                   </p>
                 </div>
                 <div className='bg-white rounded-xl p-4 md:p-6 lg:p-8 flex flex-col gap-4'>
                   <FaKitchenSet className='h-8 w-8 text-primary' />
                   <h3 className='text-lg font-bold'>Fully Equipped Kitchen</h3>
                   <p className='text-muted-foreground'>
-                    Prepare delicious meals on the go with our campervan's fully
-                    equipped kitchen, including a gas-powered range,
+                    Prepare delicious meals on the go with our campervan&apos;s
+                    fully equipped kitchen, including a gas-powered range,
                     refrigerator & freezer, and all the necessary cookware.
                   </p>
                 </div>
@@ -173,9 +174,10 @@ export default function Component() {
                   <FaTv className='h-8 w-8 text-primary' />
                   <h3 className='text-lg font-bold'>Entertainment System</h3>
                   <p className='text-muted-foreground'>
-                    Stay entertained during your travels with our campervan's
-                    entertainment system, featuring a projector, CarPlay &
-                    Android Auto, a portable speaker and more.
+                    Stay entertained during your travels with our
+                    campervan&apos;s entertainment system, featuring a
+                    projector, CarPlay & Android Auto, a portable speaker and
+                    more.
                   </p>
                 </div>
                 <div className='bg-white rounded-xl p-4 md:p-6 lg:p-8 flex flex-col gap-4'>
@@ -201,8 +203,8 @@ export default function Component() {
                   <h3 className='text-lg font-bold'>Outdoor Gear Storage</h3>
                   <p className='text-muted-foreground'>
                     Store all your outdoor gear, from hiking equipment to
-                    camping gear, in our campervan's ample storage space, making
-                    it easy to embark on your next adventure.
+                    camping gear, in our campervan&apos;s ample storage space,
+                    making it easy to embark on your next adventure.
                   </p>
                 </div>
               </div>

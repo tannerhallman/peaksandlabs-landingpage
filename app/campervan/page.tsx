@@ -59,8 +59,8 @@ export default function Campervan() {
                   </div>
                   <p className='text-muted-foreground'>
                     Our campervan features a cozy sleeping area with a
-                    queen-size bed, perfect for a restful night's sleep after a
-                    day of exploration.
+                    queen-size bed, perfect for a restful night&apos;s sleep
+                    after a day of exploration.
                   </p>
                 </div>
                 <div className='space-y-4'>
@@ -71,7 +71,7 @@ export default function Campervan() {
                     </h3>
                   </div>
                   <p className='text-muted-foreground'>
-                    Prepare delicious meals on the go with our campervan's
+                    Prepare delicious meals on the go with our campervan&apos;s
                     well-stocked kitchen, complete with a two-burner stove,
                     refrigerator, and all the necessary cookware.
                   </p>
@@ -84,7 +84,7 @@ export default function Campervan() {
                     </h3>
                   </div>
                   <p className='text-muted-foreground'>
-                    Stay refreshed with our campervan's built-in bathroom,
+                    Stay refreshed with our campervan&apos;s built-in bathroom,
                     featuring a shower and toilet, ensuring your comfort during
                     your adventures.
                   </p>
@@ -108,7 +108,7 @@ export default function Campervan() {
                     <h3 className='text-xl font-semibold'>Off-Grid Power</h3>
                   </div>
                   <p className='text-muted-foreground'>
-                    Stay connected and powered up with our campervan's solar
+                    Stay connected and powered up with our campervan&apos;s solar
                     panels, providing a sustainable energy source for your
                     off-the-grid adventures.
                   </p>
@@ -120,7 +120,7 @@ export default function Campervan() {
                   </div>
                   <p className='text-muted-foreground'>
                     Refresh yourself after a day of hiking or swimming with our
-                    campervan's convenient outdoor shower, perfect for rinsing
+                    campervan&apos;s convenient outdoor shower, perfect for rinsing
                     off in the great outdoors.
                   </p>
                 </div>
