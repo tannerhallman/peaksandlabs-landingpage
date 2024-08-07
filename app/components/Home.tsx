@@ -219,8 +219,8 @@ export default function Component() {
                 Need something?
               </h2>
               <p className='text-muted-foreground mb-8 md:text-lg lg:text-xl'>
-                Have questions or need assistance? We're just a message away and
-                we respond super quick!
+                Have questions or need assistance? We&apos;re just a message
+                away and we respond super quick!
               </p>
 
               <Button asChild size='lg'>
