@@ -1,13 +1,15 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CaravanIcon, MenuIcon } from "@/app/components/Home";
+import { FaCaravan } from "react-icons/fa6";
+import { FaAlignJustify } from "react-icons/fa6";
+
 export default function Header() {
   return (
     <header className='bg-[#f0f0f0] py-4 px-6 md:py-6 md:px-8 lg:py-8 lg:px-10'>
       <div className='container mx-auto flex items-center justify-between'>
         <Link href='/' className='flex items-center gap-2' prefetch={false}>
-          <CaravanIcon className='h-8 w-8 text-primary' />
+          <FaCaravan className='h-8 w-8 text-primary' />
           <span className='text-xl font-bold text-primary'>
             Peaks and Labs Campervans
           </span>
@@ -51,7 +53,7 @@ export default function Header() {
         <Sheet>
           <SheetTrigger asChild>
             <Button variant='outline' size='icon' className='md:hidden'>
-              <MenuIcon className='h-6 w-6' />
+              <FaAlignJustify className='h-6 w-6' />
               <span className='sr-only'>Toggle navigation</span>
             </Button>
           </SheetTrigger>
