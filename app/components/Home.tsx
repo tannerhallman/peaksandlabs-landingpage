@@ -58,7 +58,7 @@ export default function Component() {
               </div>
               <div className='relative overflow-hidden rounded-xl'>
                 <img
-                  src='/campervan.jpg'
+                  src='/opengraph-image.jpg'
                   alt='Campervan'
                   width={800}
                   height={600}

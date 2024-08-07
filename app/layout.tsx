@@ -38,3 +38,21 @@ export default function Layout({ children }: Props) {
     </html>
   );
 }
+
+export const metadata = {
+  openGraph: {
+    title: "Peaks and Labs Campervans",
+    description: "Embark on your adventure today!",
+    url: "https://peaksandlabscampervans.com",
+    siteName: "Peaks and Labs",
+    images: [
+      {
+        url: "https://peaksandlabscampervans.com/opengraph-image.jpg", // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
