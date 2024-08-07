@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+interface Props {
+  children: React.ReactNode; // <--- Added type annotation here
+}
 const fontHeading = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -20,7 +22,7 @@ const fontBody = Inter({
 
 
 
-export default function Layout({ children }) {
+export default function Layout({ children }: Props) {
   return (
     <html lang='en'>
       <body
