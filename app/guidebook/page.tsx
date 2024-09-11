@@ -203,7 +203,7 @@ export default function Guidebook() {
                           )}
                           {subsection.id === "window-covers" && (
                             <p>
-                              Magnetic covers for front windows are in the shelf above the driver's seat. Use black side out for stealth.
+                              Magnetic covers for front windows are in the shelf above the driver&apos;s seat. Use black side out for stealth.
                             </p>
                           )}
                           {subsection.id === "secret-compartment" && (
