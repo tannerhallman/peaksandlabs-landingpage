@@ -118,7 +118,7 @@ export default function Guidebook() {
           </a>
         </div>
         <p className='text-xl mb-4'>
-          Booked with us or thinking about embarking on an campervan adventure? We’re super excited to be able to host you. Renting an campervan can be an exciting and memorable experience. To ensure a smooth and enjoyable journey, let's break down the essential components of the campervan you'll be using.
+          Booked with us or thinking about embarking on an campervan adventure? We&apos;re super excited to be able to host you. Renting an campervan can be an exciting and memorable experience. To ensure a smooth and enjoyable journey, let&apos;s break down the essential components of the campervan you&apos;ll be using.
         </p>
 
 
@@ -254,7 +254,7 @@ export default function Guidebook() {
                                 Maintain at least 1/4 - 1/2 tank of gas for overnight
                                 heating.
                               </li>
-                              <li>Keep the van's battery level above 30%.</li>
+                              <li>Keep the van&apos;s battery level above 30%.</li>
                               <li>
                                 Use window covers for stealth or insulation in winter.
                               </li>
@@ -289,7 +289,7 @@ export default function Guidebook() {
                                 kit are in the storage area.
                               </li>
                               <li>
-                                The van's registration is above the driver side seat in the
+                                The van&apos;s registration is above the driver side seat in the
                                 mirror flap.
                               </li>
                             </ul>
