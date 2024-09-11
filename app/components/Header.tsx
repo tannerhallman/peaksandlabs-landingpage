@@ -34,10 +34,10 @@ export default function Header() {
             Amenities
           </Link>
           <Link
-            href='/booking'
+            href='/guidebook'
             className='text-sm font-medium hover:text-primary'
             prefetch={false}>
-            Booking
+            Guidebook
           </Link>
           <Link
             href='/support'
@@ -47,7 +47,7 @@ export default function Header() {
           </Link>
         </nav>
         <Button asChild size='sm' className='hidden md:inline-flex'>
-          <Link href='/booking'>Book Now</Link>
+          <Link href='/book'>Book Now</Link>
         </Button>
 
         <Sheet>
@@ -78,10 +78,10 @@ export default function Header() {
                 Amenities
               </Link>
               <Link
-                href='/booking'
+                href='/guidebook'
                 className='text-lg font-medium hover:text-primary'
                 prefetch={false}>
-                Booking
+                Guidebook
               </Link>
               <Link
                 href='/support'

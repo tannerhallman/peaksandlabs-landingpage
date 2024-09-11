@@ -29,7 +29,7 @@ export default function Campervan() {
             Your home away from home on the open road.
           </p>
           <Link
-            href='/booking'
+            href='/book'
             className='mt-4 bg-primary px-8 py-3 rounded-lg text-xl hover:bg-opacity-90 transition-colors'>
             Book Now
           </Link>

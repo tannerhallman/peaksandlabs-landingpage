@@ -45,7 +45,7 @@ export default function Component() {
                 </div>
                 <div className='flex gap-4'>
                   <Button asChild size='lg'>
-                    <Link href='/booking'>Book Now</Link>
+                    <Link href='/book'>Book Now</Link>
                   </Button>
                   <Link
                     href='/campervan'

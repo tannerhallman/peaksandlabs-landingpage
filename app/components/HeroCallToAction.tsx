@@ -10,7 +10,7 @@ export default function HeroCallToAction() {
           Book our campervan today and start your adventure!
         </p>
         <Link
-          href='/booking'
+          href='/book'
           className='bg-white text-primary px-8 py-3 rounded-lg text-xl hover:bg-opacity-90 transition-colors'>
           Book Now
         </Link>
