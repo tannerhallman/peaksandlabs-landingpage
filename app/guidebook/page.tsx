@@ -1,16 +1,19 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import AnimatedText from "../components/AnimatedText";
 import AnimatedSection from "../components/AnimatedSection";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Search, X } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Guidebook() {
   const [openSection, setOpenSection] = useState<string | undefined>(undefined);
+  const [searchQuery, setSearchQuery] = useState("");
   const accordionRef = useRef<HTMLDivElement>(null);
 
   const sections = [
@@ -53,6 +56,23 @@ export default function Guidebook() {
     },
   ];
 
+  const filteredSections = useMemo(() => {
+    if (!searchQuery) return sections;
+    
+    return sections.map(section => ({
+      ...section,
+      subsections: section.subsections.filter(subsection =>
+        subsection.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    })).filter(section => 
+      section.title.toLowerCase().includes(searchQuery.toLowerCase()) || section.subsections.length > 0
+    );
+  }, [searchQuery]);
+
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
+
   const scrollToSection = (sectionId: string, subsectionId?: string) => {
     setOpenSection(sectionId);
     setTimeout(() => {
@@ -67,10 +87,10 @@ export default function Guidebook() {
     <div className="mb-8">
       <h2 className="text-2xl font-semibold mb-4">Table of Contents</h2>
       <ul className="space-y-2">
-        {sections.map((section) => (
+        {filteredSections.map((section) => (
           <li key={section.id}>
-            <a
-              href={`#${section.id}`}
+            <a 
+              href={`#${section.id}`} 
               className="text-primary hover:underline"
               onClick={(e) => {
                 e.preventDefault();
@@ -82,8 +102,8 @@ export default function Guidebook() {
             <ul className="pl-4 mt-2 space-y-1">
               {section.subsections.map((subsection) => (
                 <li key={subsection.id}>
-                  <a
-                    href={`#${subsection.id}`}
+                  <a 
+                    href={`#${subsection.id}`} 
                     className="text-primary hover:underline"
                     onClick={(e) => {
                       e.preventDefault();
@@ -108,7 +128,11 @@ export default function Guidebook() {
           text='2018 Dodge Ram Promaster Campervan Guidebook'
           className='text-4xl font-bold text-primary mb-4'
         />
-        <div className='bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6'>
+        <p className='text-xl mb-4'>
+          Use this guide to learn about how to use the campervan
+        </p>
+
+        <div className='bg-green-100 border-l-4 border-green-500 p-4 mb-6'>
           <a
             href='/book'
             target='_blank'
@@ -117,35 +141,61 @@ export default function Guidebook() {
             🔥 Tip: Book direct to save big! <ExternalLink className="ml-2 w-4 h-4" />
           </a>
         </div>
-        <p className='text-xl mb-4'>
-          Booked with us or thinking about embarking on an campervan adventure? We&apos;re super excited to be able to host you. Renting an campervan can be an exciting and memorable experience. To ensure a smooth and enjoyable journey, let&apos;s break down the essential components of the campervan you&apos;ll be using.
-        </p>
 
+        <div className="mb-6 relative">
+          <Input
+            type="text"
+            placeholder="Search the guidebook..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 pr-24"
+          />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          {searchQuery && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSearch}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+            >
+              Clear <X className="ml-2 h-4 w-4" />
+            </Button>
+          )}
+        </div>
 
-        <div className="lg:flex lg:space-x-8 my-8">
-          <div className="lg:w-1/3 mx-8 lg:mb-0">
-            <ScrollArea className="h-[70vh] lg:h-auto">
+        {searchQuery && (
+          <div className="mb-4 p-2 bg-yellow-100 border-l-4 border-yellow-500 flex justify-between items-center">
+            <p>Showing filtered results for: &quot;{searchQuery}&quot;</p>
+            <Button variant="outline" size="sm" onClick={clearSearch}>
+              Show Full Guidebook
+            </Button>
+          </div>
+        )}
+
+        <div className="lg:flex lg:space-x-8">
+          <div className="lg:w-1/3 mb-8 lg:mb-0">
+            <ScrollArea className=" lg:h-auto">
               <TableOfContents />
             </ScrollArea>
           </div>
 
           <div className="lg:w-2/3">
             <ScrollArea className="h-[70vh]">
-              <Accordion
-                type="single"
-                collapsible
-                className="w-full"
-                value={openSection}
+              <Accordion 
+                type="single" 
+                collapsible 
+                className="w-full" 
+                value={openSection} 
                 onValueChange={setOpenSection}
                 ref={accordionRef}
               >
-                {sections.map((section) => (
+                {filteredSections.map((section) => (
                   <AccordionItem key={section.id} value={section.id}>
-                    <AccordionTrigger id={section.id}><h2>{section.title}</h2></AccordionTrigger>
+                    <AccordionTrigger id={section.id}>{section.title}</AccordionTrigger>
                     <AccordionContent>
                       {section.subsections.map((subsection) => (
                         <div key={subsection.id} className="mb-6">
-                          <h3 id={subsection.id} className="font-semibold mt-4 mb-2">{subsection.title}</h3>
+                          <h3 id={subsection.id} className="text-xl font-semibold mt-4 mb-2">{subsection.title}</h3>
                           {/* Content for each subsection goes here */}
                           {subsection.id === "fuel-type" && (
                             <p>
